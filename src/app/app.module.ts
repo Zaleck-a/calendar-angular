@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { MonthComponent } from './calendar/month.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    MonthComponent
   ],
   imports: [
     BrowserModule,

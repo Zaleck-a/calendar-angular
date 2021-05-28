@@ -1,0 +1,65 @@
+<nav class="mt-3">
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="{'disabled': btnStyleLeft}">
+        <a (click)="lessMonth(newMonth.id)" class="page-link" href="#">
+          <span>&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item disabled">
+        <span class="text-dark page-link w-130 text-center" #newMonth id="{{item.id}}">{{ item.mes | uppercase}}</span>
+      </li>
+      <li class="page-item" [ngClass]="{'disabled': btnStyleRigth}">
+        <a (click)="moreMonth(newMonth.id)" class="page-link" href="#">
+          <span>&raquo;</span>
+        </a>
+      </li>
+    </ul>
+</nav>
+  
+<div class="table-responsive">
+    <table class="table table-bordered caption-top">
+        <thead>
+        <tr>
+            <th scope="col" *ngFor="let day of days">{{day | uppercase}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="day-hover">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

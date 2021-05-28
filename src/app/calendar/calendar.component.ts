@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -12,6 +12,8 @@ export class CalendarComponent implements OnInit {
 
   data: any = {};
   mes: any = {};
+  
+  monthSelected: any = {};
 
   constructor( private dataService: DataService) { }
 
@@ -30,8 +32,43 @@ export class CalendarComponent implements OnInit {
     this.mes = this.dataService.getMes();
   }
 
-  openMes(idMes:string){
-    console.log(idMes);
+  openMes(colum: any){
+    this.monthSelected = colum;
   }
 
+  MonthSelctedLess(id: any) {
+    let currentMonth = Number(id) - 1
+    if(currentMonth <= 0){
+      return;
+    }
+
+    this.dataService.getMes().map(meses => {
+      meses.forEach( mes => {
+        
+        if(mes.id === currentMonth.toString()){
+          this.monthSelected = mes;
+        }
+        
+      })
+    });
+  }
+
+  MonthSelctedMore(id: any) {
+    let currentMonth = Number(id) + 1
+
+    if(currentMonth > 12){
+      return;
+    }
+
+    this.dataService.getMes().map(meses => {
+      meses.forEach( mes => {
+        
+        if(mes.id === currentMonth.toString()){
+          this.monthSelected = mes;
+        }
+        
+      })
+    });
+
+  }
 }

@@ -6,3 +6,7 @@
 .day-hover:hover{
     background-color: #e9ecef;
 }
+
+.w-130{
+    min-width: 130px;
+}
