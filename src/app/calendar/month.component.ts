@@ -1,4 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-month',
@@ -15,22 +17,25 @@ export class MonthComponent implements OnInit {
   @Output() changeMonthLess = new EventEmitter<string>();
   @Output() changeMonthMore = new EventEmitter<string>();
 
+  meses: string = moment().calendar();
+
   constructor() { }
 
   ngOnInit(): void {
-    this.days = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+    this.days = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+    console.log(this.meses);
   }
 
   lessMonth(value: any) {
     (value <= 2) ? this.btnStyleLeft = true : false;
-    (value >= 12) ? this.btnStyleRigth = false : false;
+    (value >= 11) ? this.btnStyleRigth = false : false;
     this.changeMonthLess.emit(value);
     
   }
 
   moreMonth(value: any) {
     (value <= 2) ? this.btnStyleLeft = false : false;
-    (value >= 12) ? this.btnStyleRigth = true : false;
+    (value >= 11) ? this.btnStyleRigth = true : false;
     this.changeMonthMore.emit(value);
   }
 
