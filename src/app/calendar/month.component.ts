@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
-
+moment.locale('es');
 
 @Component({
   selector: 'app-month',
@@ -11,32 +11,64 @@ import * as moment from 'moment';
 export class MonthComponent implements OnInit {
 
   days: string[] = [];
-  @Input() item: any = {};
   btnStyleLeft: boolean = false;
   btnStyleRigth: boolean = false;
-  @Output() changeMonthLess = new EventEmitter<string>();
-  @Output() changeMonthMore = new EventEmitter<string>();
 
-  meses: string = moment().calendar();
+  cells: any[] = [];
+  currentMonth: moment.Moment = moment();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.days = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
-    console.log(this.meses);
+    this.days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+    
+    this.showCells();
   }
 
-  lessMonth(value: any) {
-    (value <= 2) ? this.btnStyleLeft = true : false;
-    (value >= 11) ? this.btnStyleRigth = false : false;
-    this.changeMonthLess.emit(value);
+  lessMonth(monthSelected: moment.Moment) {
+    
+    this.currentMonth = monthSelected.subtract(1, 'month');
+    (this.currentMonth.month() === 0 ) ? this.btnStyleLeft = true : false;
+    (this.currentMonth.month() === 10 ) ? this.btnStyleRigth = false : false;
     
   }
 
-  moreMonth(value: any) {
-    (value <= 2) ? this.btnStyleLeft = false : false;
-    (value >= 11) ? this.btnStyleRigth = true : false;
-    this.changeMonthMore.emit(value);
+  moreMonth(monthSelected: moment.Moment) {
+    this.currentMonth = monthSelected.add(1, 'month');
+    (this.currentMonth.month() === 11 ) ? this.btnStyleRigth = true : false;
+    (this.currentMonth.month() === 1 ) ? this.btnStyleLeft = false : false;
   }
 
+  showCells(){
+    this.cells = this.generateDates(this.currentMonth);
+  }
+
+  generateDates(monthToShow: moment.Moment = moment()){
+    
+    let dateStart = moment(monthToShow).startOf('month');
+    let dateEnd = moment(monthToShow).endOf('month');
+
+    let cells = [];
+
+    while(dateStart.day() !== 1){
+      dateStart.subtract( 1, 'days' );
+    }
+
+    while(dateEnd.day() !== 0){
+      dateEnd.add( 1, 'days' );
+    }
+
+
+    do {
+      
+      cells.push({
+        date: moment(dateStart),
+        isIntCurrentMonth: dateStart.month() === monthToShow.month(),
+        
+      })
+      dateStart.add(1, 'days');
+    } while (dateStart.isSameOrBefore(dateEnd));
+
+    return cells;
+  }
 }

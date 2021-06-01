@@ -7,10 +7,18 @@
     background-color: #e9ecef;
 }
 
-.w-130{
-    min-width: 130px;
+.w-14{
+    width: 100% / 7;
 }
 
-.w-14{
-    width: 14.28%;
+.seven-cols .col-md-1{
+width: 14.285714285714285714285714285714%;
+max-width: 14.285714285714285714285714285714% !important;
+flex:none !important;
+}
+
+.cellDisaled{
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #ccc
 }

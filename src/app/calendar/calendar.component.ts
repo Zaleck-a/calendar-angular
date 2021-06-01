@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import * as moment from 'moment';
+moment.locale('es');
 
 @Component({
   selector: 'app-calendar',
@@ -8,67 +10,20 @@ import { DataService } from '../services/data.service';
 })
 export class CalendarComponent implements OnInit {
 
-  date: number = 2020;
-
-  data: any = {};
-  mes: any = {};
-  
+ 
   monthSelected: any = {};
+  date: moment.Moment = moment();
 
   constructor( private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.year();
-    this.getMes();
-  }
-
-  
-  year() {
-    return this.date = new Date().getFullYear();
+    
   }
 
 
-  getMes(){
-    this.mes = this.dataService.getMes();
-  }
 
   openMes(colum: any){
     this.monthSelected = colum;
   }
 
-  MonthSelctedLess(id: any) {
-    let currentMonth = Number(id) - 1
-    if(currentMonth <= 0){
-      return;
-    }
-
-    this.dataService.getMes().map(meses => {
-      meses.forEach( mes => {
-        
-        if(mes.id === currentMonth.toString()){
-          this.monthSelected = mes;
-        }
-        
-      })
-    });
-  }
-
-  MonthSelctedMore(id: any) {
-    let currentMonth = Number(id) + 1
-
-    if(currentMonth > 12){
-      return;
-    }
-
-    this.dataService.getMes().map(meses => {
-      meses.forEach( mes => {
-        
-        if(mes.id === currentMonth.toString()){
-          this.monthSelected = mes;
-        }
-        
-      })
-    });
-
-  }
 }

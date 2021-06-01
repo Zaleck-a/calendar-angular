@@ -1,13 +1,13 @@
+
 <div class="row">
-  <h2 class="text-center">{{date}}</h2>
+    <h2 class="text-center">{{date.format('YYYY')}}</h2>
 </div>
-<div class="row g-2" *ngFor="let fila of mes">
-  <div class="col d-grid gap-2" *ngFor="let columna of fila">
-    <button (click)="openMes(columna)" class="p-3 m-1 border btn-outline-dark" id="{{columna.id}}">{{columna.mes | uppercase}}</button>
-  </div>
+<div class="row m-1 row-cols-3">
+    <button class="col p-3 border btn-outline-dark">Enero</button>
+    <button class="col p-3 border btn-outline-dark">Enero</button>
+    <button class="col p-3 border btn-outline-dark">Enero</button>
+    <button class="col p-3 border btn-outline-dark">Enero</button>
 </div>
 
 
-<app-month [item]="monthSelected"
-           (changeMonthLess)="MonthSelctedLess($event)"
-           (changeMonthMore)="MonthSelctedMore($event)"></app-month>
+<app-month></app-month>
