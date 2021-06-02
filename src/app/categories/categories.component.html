@@ -13,10 +13,7 @@
             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
             (change)="changeCategory($event.target)">
             <label class="btn btn-outline-success" for="btnradio2">Holiday</label>
-          
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
-            (change)="changeCategory($event.target)">
-            <label class="btn btn-outline-danger" for="btnradio3">Radio 3</label>
+
           </div>
         
     </div>
@@ -28,11 +25,7 @@
     </div>
     <div class="card-body">
         <label for="exampleColorInput" class="form-label">Selected color</label><br>
-        <button class="btn btn-primary p-3 me-2 mb-2"></button>
-        <button class="btn btn-success p-3 me-2 mb-2"></button>
-        <button class="btn btn-danger p-3 me-2 mb-2"></button>
-        <button class="btn btn-warning p-3 me-2 mb-2"></button>
-        <button class="btn btn-secondary p-3 me-2 mb-2"></button>
+        <button *ngFor="let color of classColor; let i=index" [ngClass]="classColor[i]" class="btn p-3 me-2 mb-2"></button>
         <div class="input-group">
             <input id="new-event" type="text" class="form-control" placeholder="Category Title">
 

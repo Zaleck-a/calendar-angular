@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
+  classColor: string[] = ['btn-primary', 'btn-success', 'btn-danger', 'btn-warning', 'btn-secondary'];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,6 +18,10 @@ export class CategoriesComponent implements OnInit {
   changeCategory(element:any){
     console.log(element);
 
+  }
+
+  colorSelect(value: any){
+    console.log(value.classList[1]);
   }
 
 
