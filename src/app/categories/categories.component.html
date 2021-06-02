@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        Categories
+        Categorías
     </div>
     <div class="card-body">
         
@@ -8,11 +8,11 @@
         <div class="btn-group d-grid gap-2" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
             (change)="changeCategory($event.target)">
-            <label class="btn btn-outline-primary" for="btnradio1">Work</label>
+            <label class="btn btn-outline-primary" for="btnradio1">Trabajo</label>
           
             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
             (change)="changeCategory($event.target)">
-            <label class="btn btn-outline-success" for="btnradio2">Holiday</label>
+            <label class="btn btn-outline-success" for="btnradio2">Vacaciones</label>
 
           </div>
         
@@ -21,18 +21,19 @@
 
 <div class="card">
     <div class="card-header">
-        Create category
+        Crear categoría
     </div>
     <div class="card-body">
-        <label for="exampleColorInput" class="form-label">Selected color</label><br>
-        <button *ngFor="let color of classColor; let i=index" [ngClass]="classColor[i]" class="btn p-3 me-2 mb-2"></button>
-        <div class="input-group">
-            <input id="new-event" type="text" class="form-control" placeholder="Category Title">
-
-            <div class="input-group-append">
-              <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-            </div>
-            <!-- /btn-group -->
-          </div>
+        <label for="exampleColorInput" class="form-label">Seleccionar color</label><br>
+        <button (click)="classAdd = classColor[i]" 
+                *ngFor="let color of classColor; let i=index" 
+                [ngClass]="classColor[i]" 
+                class="btn p-3 me-2 mb-2">
+        </button>
+        
+        <div class="input-group mt-2">
+            <input type="text" class="form-control" placeholder="Nombre">
+            <button [ngClass]="classAdd" class="btn" type="button">Agregar</button>
+        </div>
     </div>
 </div>
