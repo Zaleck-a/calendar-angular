@@ -5,14 +5,9 @@
     <div class="card-body">
         
 
-        <div class="btn-group d-grid gap-2" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
-            (change)="changeCategory($event.target)">
-            <label class="btn btn-outline-primary" for="btnradio1">Trabajo</label>
-          
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
-            (change)="changeCategory($event.target)">
-            <label class="btn btn-outline-success" for="btnradio2">Vacaciones</label>
+        <div id="categories-list" class="d-grid gap-2">
+
+            <div [ngClass]='category.color' class="btn" *ngFor="let category of categories">{{ category.name }}</div>
 
           </div>
         
@@ -32,8 +27,8 @@
         </button>
         
         <div class="input-group mt-2">
-            <input type="text" class="form-control" placeholder="Nombre">
-            <button [ngClass]="classAdd" class="btn" type="button">Agregar</button>
+            <input #newCategory type="text" class="form-control" placeholder="Nombre">
+            <button (click)="addCategory(newCategory.value, classAdd)" [ngClass]="classAdd" class="btn" type="button">Agregar</button>
         </div>
     </div>
 </div>

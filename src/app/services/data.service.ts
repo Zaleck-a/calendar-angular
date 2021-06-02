@@ -9,6 +9,17 @@ export class DataService {
 
   month: moment.Moment = moment();
 
+  categories: any[] = [
+    {
+      name: 'Trabajo',
+      color: 'btn-primary'
+    },
+    {
+      name: 'Vacaciones',
+      color: 'btn-success'
+    }
+  ];
+
   
   get monthSelect() : moment.Moment {
     return this.month
