@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { DataService } from '../services/data.service';
 moment.locale('es');
 
 @Component({
@@ -11,19 +12,37 @@ moment.locale('es');
 export class CalendarComponent implements OnInit {
 
  
-  monthSelected: any = {};
   date: moment.Moment = moment();
-
-  constructor( private dataService: DataService) { }
+  months: moment.Moment[] = [];
+  monthSelected: moment.Moment = moment();
+  constructor( private dataService: DataService, 
+               private router: Router) { }
 
   ngOnInit(): void {
+    this.months = this.getMonths();
+
+    /* this.dataService.month$.subscribe(month => {
+      this.monthSelected = month;
+      console.log('mes seleccionado', month);
+    })
+     */
+  }
+
+  getMonths(){
     
+    let months = [];
+    
+    for (var i = 0; i <= 11; i++) {
+      months.push(moment(this.date.month(i)));
+      this.date.add(1, 'month');
+      
+     }
+     
+     return months;
   }
 
-
-
-  openMes(colum: any){
-    this.monthSelected = colum;
+  openMonth(month: moment.Moment){
+  this.dataService.month = month;
+    this.router.navigateByUrl('/month');
   }
-
 }

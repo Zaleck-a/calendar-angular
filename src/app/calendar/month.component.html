@@ -2,15 +2,15 @@
 <nav class="mt-3 m-1">
     <ul class="pagination">
       <li class="page-item" [ngClass]="{'disabled': btnStyleLeft}">
-        <a (click)="lessMonth(currentMonth)" class="page-link" href="#">
+        <a (click)="lessMonth(currentMonth)" class="page-link pointer">
           <span>&laquo;</span>
         </a>
       </li>
       <li class="page-item w-100">
-        <span class="text-dark page-link text-center">{{currentMonth.format('MMMM') | uppercase}}</span>
+        <span class="text-dark page-link text-center">{{currentMonth.format('MMMM YY') | uppercase}}</span>
       </li>
       <li class="page-item" [ngClass]="{'disabled': btnStyleRigth}">
-        <a (click)="moreMonth(currentMonth)" class="page-link" href="#">
+        <a (click)="moreMonth(currentMonth)" class="page-link pointer">
           <span>&raquo;</span>
         </a>
       </li>

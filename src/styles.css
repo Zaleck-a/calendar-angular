@@ -7,6 +7,10 @@
     background-color: #e9ecef;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .w-14{
     width: 100% / 7;
 }

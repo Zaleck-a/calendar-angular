@@ -18,7 +18,7 @@ import { MonthComponent } from './calendar/month.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { DataService } from '../services/data.service';
 moment.locale('es');
 
 @Component({
@@ -17,24 +18,31 @@ export class MonthComponent implements OnInit {
   cells: any[] = [];
   currentMonth: moment.Moment = moment();
 
-  constructor() { }
+  constructor( private dataService: DataService) { }
 
   ngOnInit(): void {
     this.days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-    
+    this.currentMonth = this.dataService.monthSelect;
     this.showCells();
+    this.validatebtnDisabled();
   }
 
   lessMonth(monthSelected: moment.Moment) {
     
     this.currentMonth = monthSelected.subtract(1, 'month');
-    (this.currentMonth.month() === 0 ) ? this.btnStyleLeft = true : false;
-    (this.currentMonth.month() === 10 ) ? this.btnStyleRigth = false : false;
-    
+    this.showCells();
+    this.validatebtnDisabled();
   }
 
   moreMonth(monthSelected: moment.Moment) {
     this.currentMonth = monthSelected.add(1, 'month');
+    this.showCells();
+    this.validatebtnDisabled();
+  }
+
+  validatebtnDisabled(){
+    (this.currentMonth.month() === 0 ) ? this.btnStyleLeft = true : false;
+    (this.currentMonth.month() === 10 ) ? this.btnStyleRigth = false : false;
     (this.currentMonth.month() === 11 ) ? this.btnStyleRigth = true : false;
     (this.currentMonth.month() === 1 ) ? this.btnStyleLeft = false : false;
   }

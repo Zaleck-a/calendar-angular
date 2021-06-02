@@ -1,13 +1,10 @@
 
 <div class="row">
-    <h2 class="text-center">{{date.format('YYYY')}}</h2>
+    <h2 class="text-center">{{months[0].format('YYYY')}}</h2>
 </div>
 <div class="row m-1 row-cols-3">
-    <button class="col p-3 border btn-outline-dark">Enero</button>
-    <button class="col p-3 border btn-outline-dark">Enero</button>
-    <button class="col p-3 border btn-outline-dark">Enero</button>
-    <button class="col p-3 border btn-outline-dark">Enero</button>
+    
+    <button (click)="openMonth(month)" 
+            class="col p-3 border btn-outline-dark" 
+            *ngFor="let month of months">{{month.format('MMMM') | uppercase}}</button>
 </div>
-
-
-<app-month></app-month>
