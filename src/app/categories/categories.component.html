@@ -7,7 +7,13 @@
 
         <div id="categories-list" class="d-grid gap-2">
 
-            <div [ngClass]='category.color' class="btn" *ngFor="let category of categories">{{ category.name }}</div>
+            <button  (click)="categorySelected(category.name)" 
+                     (dblclick)="deleteCategory(category)"
+                     [ngClass]='category.color' 
+                     class="btn"
+                     *ngFor="let category of categories">
+                     {{ category.name }}
+            </button >
 
           </div>
         

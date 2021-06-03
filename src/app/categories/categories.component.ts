@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-categories',
@@ -13,19 +14,16 @@ export class CategoriesComponent implements OnInit {
   
   categories: any[] = [];
 
+  
+
   constructor( private dataService: DataService) { }
 
   ngOnInit(): void {
     this.categories = this.dataService.categories
   }
 
-  changeCategory(element:any){
-    console.log(element);
-
-  }
-
   addCategory(value: any, clascColor:string){
-    if(value === ""){return;}
+    (value === "") ? false :
 
     this.categories.push({
       name: value,
@@ -33,4 +31,48 @@ export class CategoriesComponent implements OnInit {
     });
     
   }
+
+  categorySelected(value: any){
+    
+  }
+
+  deleteCategory(category: any){
+
+     Swal.fire({
+      title: `Estas seguro de eliminar ${category.name}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+        this.shareElementAndDelete(category.name);
+  
+        Swal.fire(
+          'La categoria fue eliminada!',
+          '',
+          'success'
+        )
+      }
+    })
+  }
+
+  shareElementAndDelete(name: string){
+    //validates if the category name is the default category
+    if(name === 'Vacaciones' || name === 'Trabajo'){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Categorias predeterminada!',
+      })
+      return;
+    }
+    
+    const copyCategories = this.categories;
+    const categoryDelete = copyCategories.find( element => element.name == name );
+    const index = copyCategories.indexOf(categoryDelete);
+    copyCategories.splice(index, 1);
+    this.categories = copyCategories;
+  }
+  
 }
