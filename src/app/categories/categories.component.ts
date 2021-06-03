@@ -47,12 +47,7 @@ export class CategoriesComponent implements OnInit {
       if (result.isConfirmed) {
   
         this.shareElementAndDelete(category.name);
-  
-        Swal.fire(
-          'La categoria fue eliminada!',
-          '',
-          'success'
-        )
+
       }
     })
   }
@@ -63,7 +58,7 @@ export class CategoriesComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Categorias predeterminada!',
+        text: 'Categoria predeterminada!',
       })
       return;
     }
@@ -73,6 +68,11 @@ export class CategoriesComponent implements OnInit {
     const index = copyCategories.indexOf(categoryDelete);
     copyCategories.splice(index, 1);
     this.categories = copyCategories;
+
+    Swal.fire(
+      'La categoria fue eliminada!',
+      '',
+      'success'
+    )
   }
-  
 }
