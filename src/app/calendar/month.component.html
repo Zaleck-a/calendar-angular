@@ -24,7 +24,7 @@
   <div class="row seven-cols">
   
     <div [ngClass]="{'cellDisaled': !cell.isIntCurrentMonth}" 
-         class="col-md-1 border day-hover pb-4"
+         class="col-md-1 border day-hover pb-4 calendar"
          (click)="addCategory(i)"
          *ngFor="let cell of cells; let i=index">
          {{cell.date.format('DD')}}
