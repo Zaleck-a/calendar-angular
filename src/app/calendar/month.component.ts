@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { DataService } from '../services/data.service';
+
+import Swal from 'sweetalert2';
+
 moment.locale('es');
 
 @Component({
@@ -83,6 +86,18 @@ export class MonthComponent implements OnInit {
   addCategory(index:number){
     if(this.dataService.categorySelected === ''){return;}
   
+
+    if(this.cells[index].categories.indexOf(this.dataService.categorySelected) !== -1){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: 'Ya existe la categoría en esta fecha',
+      })
+      this.dataService.categorySelected = '';
+      
+      return;
+    }
+
     this.cells[index].categories.push(this.dataService.categorySelected);
     
     this.dataService.categorySelected = '';
