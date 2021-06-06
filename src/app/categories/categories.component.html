@@ -33,7 +33,7 @@
         </button>
         
         <div class="input-group mt-2">
-            <input #newCategory type="text" class="form-control" placeholder="Nombre">
+            <input #newCategory type="text" (keyup.enter)="addCategory(newCategory.value, classAdd)" class="form-control" placeholder="Nombre">
             <button (click)="addCategory(newCategory.value, classAdd)" [ngClass]="classAdd" class="btn" type="button">Agregar</button>
         </div>
     </div>
