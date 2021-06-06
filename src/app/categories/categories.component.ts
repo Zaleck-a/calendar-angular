@@ -23,11 +23,20 @@ export class CategoriesComponent implements OnInit {
   }
 
   addCategory(value: any, clascColor:string){
-    (value === "") ? false :
 
-    this.categories.push({
+    const newCategory = {
       name: value,
       color: clascColor
+    }
+    
+    const share = this.categories.some( element => element.name.toUpperCase() === value.toUpperCase() ); 
+
+    (value !== "" && !share) ? this.categories.push(newCategory) : 
+    
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'La categoria ya existe o no es correcta',
     });
     
   }
