@@ -23,6 +23,7 @@ flex:none !important;
 
 .calendar{
     min-height: 100px;
+    text-align: right;
 }
 
 .cellDisaled{
@@ -34,6 +35,6 @@ flex:none !important;
 
 @media(max-width: 500px){
     .calendar{
-        height: 50px;
+        min-height: 50px;
     }
 }
