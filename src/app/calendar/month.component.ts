@@ -82,14 +82,9 @@ export class MonthComponent implements OnInit {
   }
 
   addCategory(index:number){
-    if(this.dataService.categorySelected === ''){return;}
-
-    if(this.cells[index].categories.indexOf(this.dataService.categorySelected) !== -1){
-      this.dataService.categorySelected = '';
-      return;
-    }
-
-    this.cells[index].categories.push(this.dataService.categorySelected);
+    const category = this.dataService.categorySelected;
+    if(category === '' || this.cells[index].categories.indexOf(category) !== -1 ){return;}
+    this.cells[index].categories.push(category);
   }
 
   deleteCategory(index: number, category: any){
