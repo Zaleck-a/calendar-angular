@@ -19,16 +19,23 @@
 
 <div class="m-3">
   <div class="row seven-cols border">
-    <div class="col-md-1 text-center border p-3" *ngFor="let day of days"><strong>{{day |uppercase}}</strong></div>
+    <div class="col-md-1 text-center border p-2" *ngFor="let day of days"><strong>{{day |uppercase}}</strong></div>
   </div>
   <div class="row seven-cols">
   
     <div [ngClass]="{'cellDisaled': !cell.isIntCurrentMonth}" 
-         class="col-md-1 border day-hover p-3" 
-         *ngFor="let cell of cells">
-         {{cell.date.date()}}
+         class="col-md-1 border day-hover pb-4"
+         (click)="addCategory(i)"
+         *ngFor="let cell of cells; let i=index">
+         {{cell.date.format('DD')}}
+         <span (dblclick)="deleteCategory(i, category)" 
+               [ngClass]="category.color" 
+               class="d-grid gap-2 text-center rounded-pill m-1" 
+               *ngFor="let category of cell.categories"
+               title="{{category.name}}">
+               {{category.name | letter | uppercase}}
+          </span>
     </div>
-    
   </div>  
 </div>
   

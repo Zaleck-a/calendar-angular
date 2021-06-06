@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { MonthComponent } from './calendar/month.component';
+import { LetterPipe } from './pipes/letter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     CategoriesComponent,
-    MonthComponent
+    MonthComponent,
+    LetterPipe
   ],
   imports: [
     BrowserModule,

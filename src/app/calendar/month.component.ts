@@ -72,11 +72,25 @@ export class MonthComponent implements OnInit {
       cells.push({
         date: moment(dateStart),
         isIntCurrentMonth: dateStart.month() === monthToShow.month(),
-        
+        categories: []
       })
       dateStart.add(1, 'days');
     } while (dateStart.isSameOrBefore(dateEnd));
 
     return cells;
+  }
+
+  addCategory(index:number){
+    if(this.dataService.categorySelected === ''){return;}
+  
+    this.cells[index].categories.push(this.dataService.categorySelected);
+    
+    this.dataService.categorySelected = '';
+  }
+
+  deleteCategory(index: number, category: any){
+    const deleteToCategory = this.cells[index].categories.find((element: any) => element.name === category.name);
+    const indice = this.cells[index].categories.indexOf(deleteToCategory);
+    this.cells[index].categories.splice(indice, 1);
   }
 }

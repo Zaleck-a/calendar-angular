@@ -20,6 +20,7 @@ export class DataService {
     }
   ];
 
+  categorySelected: string = '';
   
   get monthSelect() : moment.Moment {
     return this.month

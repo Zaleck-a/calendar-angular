@@ -32,8 +32,8 @@ export class CategoriesComponent implements OnInit {
     
   }
 
-  categorySelected(value: any){
-    
+  categorySelected(category: any){
+    this.dataService.categorySelected = category;
   }
 
   deleteCategory(category: any){
