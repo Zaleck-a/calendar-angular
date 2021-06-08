@@ -20,6 +20,16 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories = this.dataService.categories
+    this.loadLocalStorage();
+  }
+
+  saveLocalStorage(categories: string[]){
+    localStorage.setItem('categories', JSON.stringify(categories));
+  }
+
+  loadLocalStorage(){
+    const categoriesString = localStorage.getItem('categories');
+    (categoriesString) ? this.categories = JSON.parse(categoriesString) : false
   }
 
   addCategory(value: any, clascColor:string){
@@ -31,13 +41,20 @@ export class CategoriesComponent implements OnInit {
     
     const share = this.categories.some( element => element.name.toUpperCase() === value.toUpperCase() ); 
 
-    (value !== "" && !share) ? this.categories.push(newCategory) : 
+    if(value !== "" && !share){
+      this.categories.push(newCategory);
+
+      this.saveLocalStorage(this.categories);
+
+    }else{
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'La categoria ya existe o no es correcta',
+      });
+    }
     
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'La categoria ya existe o no es correcta',
-    });
     
   }
 
@@ -77,6 +94,7 @@ export class CategoriesComponent implements OnInit {
     const index = copyCategories.indexOf(categoryDelete);
     copyCategories.splice(index, 1);
     this.categories = copyCategories;
+    this.saveLocalStorage(this.categories);
 
     Swal.fire(
       'La categoria fue eliminada!',
