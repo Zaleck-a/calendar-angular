@@ -92,4 +92,8 @@ export class MonthComponent implements OnInit {
     const indice = this.cells[index].categories.indexOf(deleteToCategory);
     this.cells[index].categories.splice(indice, 1);
   }
+
+  prevent(e:any){
+    e.stopPropagation();//evita el primer click
+  }
 }
