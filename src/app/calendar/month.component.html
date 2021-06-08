@@ -28,7 +28,8 @@
          (click)="addCategory(i)"
          *ngFor="let cell of cells; let i=index">
          {{cell.date.format('DD')}}
-         <span (dblclick)="deleteCategory(i, category)" 
+         <span (dblclick)="deleteCategory(i, category)"
+               (click)="false" 
                [ngClass]="category.color" 
                class="d-grid gap-2 text-center rounded-pill m-1" 
                *ngFor="let category of cell.categories"
