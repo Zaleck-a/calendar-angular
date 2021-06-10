@@ -5,18 +5,18 @@
     <div class="card-body">
         
 
-        <div id="categories-list" class="d-grid gap-2">
+        <div class="btn-group d-grid gap-2" role="group" aria-label="Basic radio toggle button group">
 
-            <button  (click)="categorySelected(category)" 
-                     (dblclick)="deleteCategory(category)"
-                     [ngClass]='category.color' 
-                     class="btn"
-                     *ngFor="let category of categories">
-                     {{ category.name }}
-            </button >
+            <div  class="d-grid gap-2" 
+                  (click)="categorySelected(category)" 
+                  (dblclick)="deleteCategory(category)"
+                  *ngFor="let category of categories">
 
-          </div>
-        
+                <input type="radio" class="btn-check" name="btnradio" id="{{ category.name }}" autocomplete="off">
+                <label class="btn" [ngClass]='category.color'  for="{{ category.name }}">{{ category.name }}</label>
+
+            </div>
+        </div>
     </div>
 </div>
 
