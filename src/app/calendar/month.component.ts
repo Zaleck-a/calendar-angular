@@ -67,7 +67,11 @@ export class MonthComponent implements OnInit {
       dateEnd.add( 1, 'days' );
     }
 
-
+    const monthCells = localStorage.getItem(this.currentMonth.month().toString());
+    let cellsPase = [];
+    (monthCells) ? cellsPase = JSON.parse(monthCells) : false;
+    
+    let i = 0;
     do {
       
       cells.push({
@@ -75,6 +79,12 @@ export class MonthComponent implements OnInit {
         isIntCurrentMonth: dateStart.month() === monthToShow.month(),
         categories: []
       })
+
+      if(monthCells){
+      cells[i].categories = cellsPase[i].categories;
+      }
+      
+      i++;
       dateStart.add(1, 'days');
     } while (dateStart.isSameOrBefore(dateEnd));
 
@@ -85,12 +95,16 @@ export class MonthComponent implements OnInit {
     const category = this.dataService.categorySelected;
     if(category === '' || this.cells[index].categories.indexOf(category) !== -1 ){return;}
     this.cells[index].categories.push(category);
+
+    localStorage.setItem( this.currentMonth.month().toString(), JSON.stringify(this.cells));
   }
 
   deleteCategory(index: number, category: any){
     const deleteToCategory = this.cells[index].categories.find((element: any) => element.name === category.name);
     const indice = this.cells[index].categories.indexOf(deleteToCategory);
     this.cells[index].categories.splice(indice, 1);
+
+    localStorage.setItem( this.currentMonth.month().toString(), JSON.stringify(this.cells));
   }
 
   prevent(e:any){
